@@ -5,7 +5,7 @@ fn main() {
         _ => {
             println!("Failed to read database");
             return ();
-        },
+        }
     };
 
     // Handle request
@@ -16,7 +16,7 @@ fn main() {
         None => {
             println!("Usage: kvstore [key] [value]");
             return;
-        },
+        }
         Some(key) => match value {
             None => {
                 // Key only -> query from database
@@ -27,14 +27,14 @@ fn main() {
                 match db.flush() {
                     _ => (),
                 };
-            },
+            }
             Some(value) => {
                 // Key and value -> insert to database
                 db.insert(&key, &value);
                 match db.flush() {
                     _ => (),
                 };
-            },
+            }
         },
     }
 }
@@ -67,7 +67,7 @@ impl Database {
         return Ok(Database {
             path: path.to_string(),
             store: store,
-        })
+        });
     }
 
     /// Inserts a key-value pair into the database
@@ -94,7 +94,9 @@ impl Database {
 
     /// Writes the contents of the Database to the file system
     fn flush(&self) -> std::io::Result<()> {
-        let contents = self.store.iter()
+        let contents = self
+            .store
+            .iter()
             .map(|(key, value)| format!("{}\t{}", key, value))
             .collect::<Vec<String>>()
             .join("\n");
