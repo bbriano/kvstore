@@ -66,7 +66,7 @@ impl Database {
 
         return Ok(Database {
             path: path.to_string(),
-            store: store,
+            store,
         });
     }
 
