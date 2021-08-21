@@ -1,0 +1,9 @@
+Kvstore is a local key-value database.
+
+Use:
+	$ kvstore pw Pa$$w0rd
+	$ kvstore pw
+	Pa$$w0rd
+
+Install:
+	$ cargo install
